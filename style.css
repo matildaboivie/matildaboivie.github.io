@@ -1,54 +1,47 @@
 :root {
-  --paper: #ffffff;
-  --ink: #14140f;
-  --ink-dim: #6b6b64;
-  --line: #e4e3dc;
-  --blue: #112263;
-  --red: #380705;
-  --green: #a9c264;
-  --accent: var(--blue);
+  /* Färgpalett från Kod 2 */
+  --bg-cream: #FDFAEF;
+  --green-accent: #B6C561;
+  --burgundy: #4B110D;
+  --text-black: #1A1A1A;
+  --pill-bg: #EAE6D6;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+/* Bakgrund från Kod 1 (Pälsen) */
 body {
   background-image: url('https://i.pinimg.com/1200x/08/c1/36/08c136a3011c7cb8d779401fa7288cc8.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-color: var(--ink); /* fallback bakom pälsen om bilden är ljus */
-  color: var(--ink);
+  background-color: var(--text-black);
+  color: var(--text-black);
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
 }
 
-.wrap {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 24px;
+/* Retro-rubriker från Kod 2 med typsnittet Syne */
+.bold-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  color: var(--green-accent);
+  text-transform: lowercase;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
 }
 
-/* ---------- Hero ---------- */
-.content-card {
-  background: var(--paper);
-  max-width: 900px;
-  margin: -30px auto 0; /* ökat overlap, testa dig fram */
-  border-radius: 32px 32px 0 0;
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.12);
-}
-
-.content-card .wrap {
-  padding-top: 48px;
-}
-
+/* ---------- Hero (Kod 1 Placering & Storlek) ---------- */
 .hero {
   position: relative;
   width: 100%;
   height: clamp(420px, 78vh, 760px);
-  overflow: visible; /* ändrat från hidden */
+  overflow: visible;
 }
 
 .nav {
@@ -59,12 +52,12 @@ body {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  z-index: 2;
+  z-index: 10;
 }
 
-.nav a, .nav span {
+.nav a {
   background: #ffffff;
-  color: var(--ink);
+  color: var(--text-black);
   padding: 10px 20px;
   border-radius: 999px;
   font-size: 14px;
@@ -73,21 +66,20 @@ body {
   white-space: nowrap;
 }
 
-.nav a.active { background: #e3e3dd; font-weight: 600; }
-.nav .date { margin-left: auto; color: var(--ink-dim); }
+.nav a.active {
+  background: var(--pill-bg);
+  font-weight: 600;
+}
 
-/* Text & Rubrik i Herosektionen */
-.hero-kicker {
+.sub-tag {
   position: absolute;
   left: 20px;
-  bottom: calc(clamp(100px, 19vw, 260px) * 1.35 + 10px);
+  bottom: calc(clamp(100px, 19vw, 260px) * 0.9);
   z-index: 3;
-  font-family: 'Caveat', cursive;
-  font-size: clamp(32px, 4.5vw, 56px);
-  font-weight: 400;
+  font-size: 1.1rem;
   color: #ffffff;
+  letter-spacing: 1px;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
-  pointer-events: none;
 }
 
 .hero-title {
@@ -95,151 +87,169 @@ body {
   left: 0;
   bottom: -0.09em;
   width: 100%;
-  z-index: 5; /* ändrat från 1 */
-  font-family: 'Aileron', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 700;
+  z-index: 5;
   font-size: clamp(100px, 19vw, 260px);
-  line-height: 0.82;
-  letter-spacing: -0.02em;
-  color: var(--green);
   padding-left: 16px;
 }
 
-/* ---------- Section labels ---------- */
-
-section { padding: 56px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 24px; }
-
-.section-heading {
-  font-family: 'Aileron', 'Helvetica Neue', Arial, sans-serif;
-  font-weight: 700;
-  font-size: clamp(32px, 5vw, 48px);
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin-bottom: 32px;
+/* ---------- Innehållskort & Sektioner (Kod 2 Layout) ---------- */
+.content-card {
+  background: var(--bg-cream);
+  max-width: 1000px;
+  margin: -30px auto 0;
+  border-radius: 32px 32px 0 0;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.12);
 }
 
-.role {
-  margin-top: 40px;
-  padding: 40px 0 0;
-  font-size: 18px;
-  color: var(--ink-dim);
-  max-width: 48ch;
+.section {
+  padding: 5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--pill-bg);
+  scroll-margin-top: 24px;
 }
 
-.role strong { color: var(--ink); font-weight: 500; }
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-.section-text { max-width: 58ch; color: var(--ink-dim); font-size: 15px; }
+.two-col {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
 
-/* ---------- About / education / experience ---------- */
+.two-col.reverse {
+  flex-direction: row-reverse;
+}
 
-.about-grid {
+.center-text {
+  text-align: center;
+}
+
+/* About Section */
+.about-section .bold-title {
+  font-size: 4.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-img {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.bio-text {
+  font-size: 1.1rem;
+  max-width: 450px;
+  color: var(--text-black);
+}
+
+/* Project Section */
+.project-section .bold-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.grid-2x2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
 }
 
-.about-grid h3 {
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
-  font-size: 18px;
-  margin-bottom: 8px;
+.row-3 {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 2rem 0;
 }
 
-.about-grid p { color: var(--ink-dim); font-size: 15px; max-width: 40ch; }
-
-/* ---------- Case studies ---------- */
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+.placeholder-img {
+  width: 100%;
+  height: 140px;
+  background-color: var(--pill-bg);
+  border: 1px solid var(--green-accent);
+  border-radius: 6px;
 }
 
-.project-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 28px;
+.max-width-p {
+  max-width: 500px;
+  margin: 0 auto;
+  color: var(--text-black);
+}
+
+/* Skills Section */
+.skills-section .bold-title {
+  font-size: 4.5rem;
+  margin-bottom: 3rem;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.skill-pill {
+  background-color: transparent;
+  border: 1.5px solid var(--burgundy);
+  color: var(--burgundy);
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Contact / Footer */
+.contact-section {
+  border-bottom: none;
+  border-radius: 0 0 32px 32px;
+}
+
+.contact-section .container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 2rem;
 }
 
-.project-num {
-  font-size: 13px;
-  color: var(--ink-dim);
+.contact-section .bold-title {
+  font-size: 5.5rem;
 }
 
-.project-card h3 {
-  font-family: 'Fraunces', serif;
-  font-weight: 500;
-  font-size: 22px;
-  color: var(--ink);
-}
-
-.project-card p {
-  color: var(--ink-dim);
-  font-size: 15px;
-}
-
-.project-card .metric {
-  font-family: 'Fraunces', serif;
-  font-size: 15px;
-  color: var(--accent);
-  font-weight: 600;
-  margin-top: auto;
-}
-
-.tag-strategy {
-  color: var(--red);
-  border: 1px solid var(--red);
-}
-
-/* ---------- Stack ---------- */
-
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 24px 16px;
-}
-
-.stack-group h4 {
-  font-size: 13px;
-  color: var(--ink-dim);
-  font-weight: 400;
-  margin-bottom: 10px;
-}
-
-.stack-group ul { list-style: none; }
-.stack-group li { font-size: 15px; padding: 4px 0; }
-
-/* ---------- Footer ---------- */
-
-footer {
-  padding: 56px 0 96px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 24px;
-}
-
-footer a {
-  color: var(--ink);
+.contact-btn {
+  display: inline-block;
+  background-color: var(--burgundy);
+  color: var(--bg-cream);
+  padding: 0.9rem 2.2rem;
+  border-radius: 50px;
   text-decoration: none;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 2px;
-  font-size: 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: opacity 0.2s ease;
 }
 
-footer a:hover { border-color: var(--accent); color: var(--accent); }
+.contact-btn:hover {
+  opacity: 0.9;
+}
 
-.footer-note { font-size: 13px; color: var(--ink-dim); }
-
-@media (max-width: 700px) {
+/* Responsiv anpassning för mobiler */
+@media (max-width: 768px) {
   .nav { top: 16px; left: 16px; right: 16px; }
-  .nav a, .nav span { padding: 8px 14px; font-size: 13px; }
-  .nav .date { display: none; }
-  section { padding: 40px 0; }
-  .role { padding-top: 24px; margin-top: 24px; }
+  .nav a { padding: 8px 14px; font-size: 13px; }
+  .about-section .bold-title, 
+  .project-section .bold-title, 
+  .skills-section .bold-title,
+  .contact-section .bold-title { font-size: 3rem; }
+  .two-col, .two-col.reverse { flex-direction: column; gap: 2rem; }
+  .row-3 { flex-direction: column; }
 }
