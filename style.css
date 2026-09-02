@@ -15,7 +15,7 @@
 
 /* Bakgrund från Kod 1 (Pälsen) */
 body {
-  background-image: url('https://i.pinimg.com/1200x/08/c1/36/08c136a3011c7cb8d779401fa7288cc8.jpg');
+  background-image: url('https://i.pinimg.com/1200x/d5/2d/be/d52dbe4fe0c56d0ae67d8d2db472d1f3.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -56,20 +56,22 @@ body {
 }
 
 .nav a {
-  background: #ffffff;
-  color: var(--text-black);
-  padding: 10px 20px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  white-space: nowrap;
+ background: #ffffff;
+ color: var(--text-black);
+ padding: 10px 20px;
+ border-radius: 999px;
+ font-size: 14px;
+ font-weight: 500;
+ text-decoration: none;
+ white-space: nowrap;
 }
 
+
 .nav a.active {
-  background: var(--pill-bg);
-  font-weight: 600;
+ background: var(--pill-bg);
+ font-weight: 600;
 }
+
 
 .sub-tag {
   position: absolute;
@@ -84,13 +86,15 @@ body {
 
 .hero-title {
   position: absolute;
-  left: 0;
+  left: -2vw;                             /* Gör att texten tjuvstartar lite utanför vänsterkanten */
   bottom: -0.09em;
-  width: 100%;
+  width: 104vw;                          /* Gör rubriken bredare än skärmens/kortets 100% */
   z-index: 5;
-  font-size: clamp(100px, 19vw, 260px);
-  padding-left: 16px;
+  font-size: clamp(80px, 14vw, 180px);  /* LITE MINDRE: Ändrad från (100px, 19vw, 260px) */
+  padding-left: 0;                       /* Borttagen padding för maximal bredd */
+  letter-spacing: -0.04em;               /* Tätare bokstäver så allt får plats snyggt */
 }
+
 
 /* ---------- Innehållskort & Sektioner (Kod 2 Layout) ---------- */
 .content-card {
