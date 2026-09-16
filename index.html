@@ -343,5 +343,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="charts.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="charts.js"></script>
+
+<script>
+    const scrollPoints = [25, 50, 75, 90];
+    const trackedScrollPoints = new Set();
+
+    window.addEventListener('scroll', function () {
+        const scrollTop = window.scrollY;
+        const documentHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+
+        const scrollPercent = Math.round(
+            (scrollTop / documentHeight) * 100
+        );
+
+        scrollPoints.forEach(function (point) {
+            if (scrollPercent >= point && !trackedScrollPoints.has(point)) {
+
+                window.dataLayer = window.dataLayer || [];
+
+                dataLayer.push({
+                    event: 'scroll_depth',
+                    scroll_percent: point
+                });
+
+                trackedScrollPoints.add(point);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+
 </body>
 </html>
