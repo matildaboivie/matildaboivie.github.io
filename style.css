@@ -86,7 +86,7 @@ body {
 
 .hero-title {
   position: absolute;
-  left: -2vw;                             /* Gör att texten tjuvstartar lite utanför vänsterkanten */
+  left: 5vw;                             /* Gör att texten tjuvstartar lite utanför vänsterkanten */
   bottom: -0.09em;
   width: 104vw;                          /* Gör rubriken bredare än skärmens/kortets 100% */
   z-index: 5;
@@ -139,6 +139,10 @@ body {
 }
 
 /* About Section */
+.about-section {
+    padding-top: 120px;
+}
+
 .about-section .bold-title {
   font-size: 4.5rem;
   margin-bottom: 1.5rem;
