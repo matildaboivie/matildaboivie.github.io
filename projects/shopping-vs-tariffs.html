@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Shopping vs. Tariffs | Matilda Boivie</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS ligger en mapp bakåt -->
+  <link href="../style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="content-card">
+
+    <section class="section project-section data-project">
+      <div class="container">
+
+        <!-- Tillbaka till startsidan -->
+        <a href="../index.html#projects" class="back-link">
+          ← Back to projects
+        </a>
+
+        <div class="project-info">
+          <p class="eyebrow">PROJECT 1</p>
+
+          <h3 class="bold-title">
+            shopping vs.<br>tariffs
+          </h3>
+
+          <p class="project-type">
+            DATA VISUALIZATION / BERGHS
+          </p>
+
+          <p>
+            Finns det ett samband mellan svenskarnas shoppingbeteende på
+            Temu och Shein och EU:s nya tullregler? Jag jämför data över
+            svenskarnas shopping med tidpunkten då de nya tullreglerna
+            infördes.
+          </p>
+        </div>
+
+
+        <div class="chart-container">
+
+          <h3>Temu & Shein före och vid tullens införande</h3>
+
+          <p>
+            Andelen svenska konsumenter som handlade från Temu eller Shein
+            jämförs med samma månader året innan. I februari 2026 var andelen
+            högre än 2025. I juli 2026, samma månad som EU:s nya tull infördes,
+            var andelen betydligt lägre.
+          </p>
+
+          <canvas id="shoppingTariffChart"></canvas>
+
+          <p class="chart-source">
+            Andel konsumenter (%) · Februari och juli 2025–2026 ·
+            EU-tull införd 1 juli 2026
+          </p>
+
+        </div>
+
+
+        <div class="data-conclusion">
+
+          <p class="eyebrow">SLUTSATS</p>
+
+          <h3>Vad visar datan?</h3>
+
+          <p>
+            I februari 2026 handlade 10 % av svenska konsumenter från
+            Temu eller Shein, jämfört med 7 % samma månad 2025.
+            I juli vände utvecklingen: 8 % handlade från plattformarna,
+            jämfört med 18 % i juli 2025. Nedgången sammanfaller med
+            att EU:s nya tull infördes den 1 juli 2026. Det tyder på
+            ett möjligt samband, men datan visar inte att tullen ensam
+            orsakade minskningen.
+          </p>
+
+        </div>
+
+
+        <div class="data-method">
+
+          <p class="eyebrow">OM DATAN</p>
+
+          <p>
+            Datan kommer från Svensk Handels E-handelsindikator och visar
+            andelen svenska konsumenter som handlat från Temu eller Shein.
+            Februari och juli 2026 jämförs med samma månader 2025.
+            EU:s nya tull på lågprisimport började gälla den 1 juli 2026.
+          </p>
+
+          <p class="data-note">
+            <strong>Begränsning:</strong>
+            Visualiseringen visar ett möjligt samband i tid,
+            inte ett bevisat orsakssamband. Andra faktorer
+            kan också ha påverkat konsumenternas shoppingbeteende.
+          </p>
+
+          <p class="data-sources">
+            Källor:
+
+            <a href="https://www.svenskhandel.se/rapporter/e-handelsindikatorn/e-handelsindikatorn-februari-2026/"
+               target="_blank"
+               rel="noopener noreferrer">
+              Svensk Handel – E-handelsindikatorn februari 2026
+            </a>
+
+            ·
+
+            <a href="https://www.svenskhandel.se/rapporter/e-handelsindikatorn/e-handelsindikatorn-juni-juli-2026/"
+               target="_blank"
+               rel="noopener noreferrer">
+              Svensk Handel – E-handelsindikatorn juni–juli 2026
+            </a>
+
+            ·
+
+            <a href="https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en"
+               target="_blank"
+               rel="noopener noreferrer">
+              EU-kommissionen – nya tullregler
+            </a>
+
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Din egen chart-kod ligger en mapp bakåt -->
+  <script src="../charts.js"></script>
+
+</body>
+
+</html>

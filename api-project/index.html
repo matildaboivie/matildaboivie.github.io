@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+   <title>From Screen to Page</title>
+
+
+   <!-- Kopplar HTML till vår CSS -->
+   <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+
+<body>
+
+
+   <main>
+
+
+       <!-- HEADER -->
+
+
+       <header class="hero">
+
+
+           <p class="eyebrow">
+               MOVIES → BOOKS
+           </p>
+
+
+           <h1>
+               FROM<br>
+               SCREEN<br>
+               TO PAGE
+           </h1>
+
+
+           <p class="intro">
+               Tell us what you like to watch.
+               We'll find you a book.
+           </p>
+
+
+       </header>
+
+
+
+
+       <!-- SEARCH -->
+
+
+       <section class="search-section">
+
+
+           <p class="small-title">
+               WHAT HAVE YOU BEEN WATCHING?
+           </p>
+
+
+           <div class="search-box">
+
+
+               <input
+                   id="movieInput"
+                   type="text"
+                   placeholder="Enter a movie"
+               >
+
+
+               <button onclick="searchMovie()">
+                   FIND MY BOOK →
+               </button>
+
+
+           </div>
+
+
+       </section>
+
+
+
+
+       <!-- RESULT -->
+
+
+       <section id="result" class="result"></section>
+
+
+
+
+       <!-- FOOTER -->
+
+
+       <footer>
+
+
+           <p>
+               FROM SCREEN TO PAGE
+           </p>
+
+
+           <p>
+               Same worlds. New stories.
+           </p>
+
+
+       </footer>
+
+
+   </main>
+
+
+
+
+   <script>
+
+
+       // Din TMDB API-nyckel
+       const API_KEY = "245064240c6f0125b65a58f985f67128";
+
+
+
+
+       async function searchMovie() {
+
+
+           // Hämtar det användaren skriver
+           const searchTerm =
+               document.getElementById("movieInput").value;
+
+
+
+
+           // Söker efter filmen hos TMDB
+           const movieUrl =
+               `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchTerm}`;
+
+
+           const movieResponse = await fetch(movieUrl);
+           const movieData = await movieResponse.json();
+
+
+
+
+           // Tar första sökresultatet
+           const movie = movieData.results[0];
+
+
+
+
+           // Hämtar TMDB:s genrelista
+           const genreUrl =
+               `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`;
+
+
+           const genreResponse = await fetch(genreUrl);
+           const genreData = await genreResponse.json();
+
+
+
+
+           // Hittar filmens genre
+           const genre = genreData.genres.find(
+               genre => genre.id === movie.genre_ids[0]
+           );
+
+
+
+
+           // Söker efter böcker på Open Library
+           const bookUrl =
+               `https://openlibrary.org/search.json?q=${genre.name}&limit=5`;
+
+
+           const bookResponse = await fetch(bookUrl);
+           const bookData = await bookResponse.json();
+
+
+
+
+           // Tar första boken
+           const book = bookData.docs[0];
+
+
+
+
+           // Hämtar författarens namn
+           const author = book.author_name
+               ? book.author_name[0]
+               : "Unknown author";
+
+
+
+
+           // Visar resultatet
+           document.getElementById("result").innerHTML =
+
+
+               `<div class="movie-result">
+
+
+                   <p class="small-title">
+                       BECAUSE YOU LIKED
+                   </p>
+
+
+                   <h2>
+                       ${movie.title}
+                   </h2>
+
+
+                   <p class="genre">
+                       ${genre.name}
+                   </p>
+
+
+               </div>
+
+
+
+
+               <div class="book-result">
+
+
+                   <p class="small-title">
+                       WE THINK YOU'LL LIKE
+                   </p>
+
+
+                   <h3>
+                       ${book.title}
+                   </h3>
+
+
+                   <p class="author">
+                       by ${author}
+                   </p>
+
+
+                   <p class="genre">
+                       ${genre.name}
+                   </p>
+
+
+               </div>`;
+
+
+       }
+
+
+   </script>
+
+
+</body>
+
+
+</html>

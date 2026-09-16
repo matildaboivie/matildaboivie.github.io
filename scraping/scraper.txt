@@ -1,0 +1,149 @@
+const cheerio = require("cheerio");
+const fs = require("fs");
+
+const baseUrl = "https://www.allabolag.se/bransch-sök?q=Musik";
+
+const pages = [
+  baseUrl,
+  `${baseUrl}&page=2`,
+  `${baseUrl}&page=3`,
+  `${baseUrl}&page=4`,
+  `${baseUrl}&page=5`
+];
+
+// Proxy kan läggas till här senare
+const proxy = null;
+
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function scrapePage(url, pageNumber) {
+  console.log(`Hämtar sida ${pageNumber}...`);
+
+  const fetchUrl = proxy ? `${proxy}${url}` : url;
+
+  const response = await fetch(fetchUrl, {
+    cache: "no-store",
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+      "Cache-Control": "no-cache",
+      "Pragma": "no-cache"
+    }
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP-fel: ${response.status}`);
+  }
+
+  const html = await response.text();
+  const $ = cheerio.load(html);
+
+  const companies = [];
+
+  $(".SearchResultCard-iconDataContainer").each((index, element) => {
+    const data = $(element);
+    const object = data.parent();
+
+    const name = object
+      .find(".addax-cs_hl_hit_company_name_click")
+      .first()
+      .text()
+      .trim();
+
+    let orgnr = "";
+
+    data.find(".CardHeader-propertyList").each((i, el) => {
+      const text = $(el).text().trim();
+
+      if (text.startsWith("Org.nr")) {
+        orgnr = text.replace("Org.nr", "").trim();
+      }
+    });
+
+    const phone = data
+      .find(".CardHeader-phone")
+      .text()
+      .replace("Telefon", "")
+      .trim();
+
+    let address = "";
+
+    data.find(".CardHeader-propertyList").each((i, el) => {
+      const property = $(el);
+      const text = property.text().trim();
+
+      if (
+        !text.startsWith("Org.nr") &&
+        !property.hasClass("CardHeader-phone")
+      ) {
+        address = text;
+      }
+    });
+
+    companies.push({
+      företagsnamn: name,
+      organisationsnummer: orgnr,
+      telefonnummer: phone,
+      adress: address
+    });
+  });
+
+  console.log(`Sida ${pageNumber} gav ${companies.length} objekt.`);
+
+  return companies;
+}
+
+async function scrape() {
+  const allCompanies = [];
+
+  for (let i = 0; i < pages.length; i++) {
+    try {
+      const companies = await scrapePage(pages[i], i + 1);
+      allCompanies.push(...companies);
+    } catch (error) {
+      console.log(`Fel på sida ${i + 1}: ${error.message}`);
+      console.log("Fortsätter med nästa sida...");
+    }
+
+    if (i < pages.length - 1) {
+      await wait(500);
+    }
+  }
+
+  const rows = [
+    [
+      "Företagsnamn",
+      "Organisationsnummer",
+      "Telefonnummer",
+      "Adress"
+    ]
+  ];
+
+  allCompanies.forEach((company) => {
+    rows.push([
+      company.företagsnamn,
+      company.organisationsnummer,
+      company.telefonnummer,
+      company.adress
+    ]);
+  });
+
+  const csv = rows
+    .map((row) =>
+      row
+        .map((field) => `"${field.replace(/"/g, '""')}"`)
+        .join(",")
+    )
+    .join("\n");
+
+  fs.writeFileSync("foretag.csv", csv, "utf8");
+
+  console.log("");
+  console.log("Klart!");
+  console.log(`Totalt antal objekt: ${allCompanies.length}`);
+  console.log("Resultatet är sparat i foretag.csv");
+}
+
+scrape();

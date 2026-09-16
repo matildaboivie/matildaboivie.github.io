@@ -1,0 +1,608 @@
+* {
+   box-sizing: border-box;
+}
+
+
+body {
+   margin: 0;
+   background: #d8d0c0;
+   color: #181818;
+   font-family: 'Inter', Arial, sans-serif;
+}
+
+
+/* =========================
+  THE FOLDER
+========================= */
+
+
+main {
+   position: relative;
+   max-width: 1100px;
+   min-height: 100vh;
+   margin: 55px auto;
+   padding: 65px 75px 50px;
+
+
+   background: #eee7d8;
+
+
+   border: 1px solid #aaa18f;
+   border-radius: 4px;
+
+
+   box-shadow:
+       10px 10px 0 #b9b09f,
+       18px 18px 0 rgba(0,0,0,0.08);
+}
+
+
+
+
+/* Folder tab on the right */
+
+
+main::after {
+   content: "MOVIES → BOOKS";
+
+
+   position: absolute;
+   right: -1px;
+   top: 170px;
+
+
+   writing-mode: vertical-rl;
+
+
+   padding: 18px 10px;
+
+
+   background: #d2c8b6;
+   border: 1px solid #aaa18f;
+   border-right: none;
+
+
+   font-size: 9px;
+   letter-spacing: 2px;
+}
+
+
+
+
+/* =========================
+  PAPER CLIP
+========================= */
+
+
+main::before {
+   content: "";
+
+
+   position: absolute;
+   top: 28px;
+   left: -18px;
+
+
+   width: 32px;
+   height: 75px;
+
+
+   border: 3px solid #333;
+   border-radius: 7px;
+
+
+   transform: rotate(-5deg);
+
+
+   box-shadow:
+       4px 4px 0 rgba(0,0,0,0.12);
+}
+
+
+
+
+/* =========================
+  HERO
+========================= */
+
+
+.hero {
+   position: relative;
+   padding-bottom: 70px;
+
+
+   border-bottom: 1px solid #292929;
+}
+
+
+.eyebrow {
+   font-size: 10px;
+   letter-spacing: 3px;
+   font-weight: 600;
+
+
+   margin: 0 0 30px;
+}
+
+
+.hero h1 {
+   font-family: 'Syne', sans-serif;
+
+
+   font-size: clamp(70px, 10vw, 125px);
+   line-height: 0.82;
+
+
+   font-weight: 800;
+   letter-spacing: -6px;
+
+
+   margin: 0;
+
+
+   max-width: 700px;
+}
+
+
+.intro {
+   font-size: 18px;
+   line-height: 1.5;
+
+
+   max-width: 360px;
+
+
+   margin-top: 40px;
+}
+
+
+
+
+/* =========================
+  SEARCH PAPER
+========================= */
+
+
+.search-section {
+   margin-top: 55px;
+   padding: 30px;
+
+
+   background: #e5ddcd;
+
+
+   border: 1px solid #aaa18f;
+
+
+   transform: rotate(-0.4deg);
+
+
+   box-shadow:
+       5px 5px 0 rgba(0,0,0,0.08);
+}
+
+
+.small-title {
+   font-size: 9px;
+   letter-spacing: 2px;
+   font-weight: 600;
+
+
+   margin: 0 0 16px;
+}
+
+
+.search-box {
+   display: flex;
+   max-width: 850px;
+}
+
+
+input {
+   flex: 1;
+   min-width: 0;
+
+
+   padding: 18px 20px;
+
+
+   border: 1px solid #252525;
+   border-right: none;
+
+
+   background: #f2ecdf;
+
+
+   font-family: 'Inter', sans-serif;
+   font-size: 15px;
+
+
+   color: #181818;
+   outline: none;
+}
+
+
+input::placeholder {
+   color: #777267;
+}
+
+
+input:focus {
+   background: #faf7ef;
+}
+
+
+button {
+   padding: 18px 27px;
+
+
+   border: 1px solid #252525;
+
+
+   background: #181818;
+   color: #eee7d8;
+
+
+   font-family: 'Inter', sans-serif;
+
+
+   font-size: 9px;
+   font-weight: 600;
+   letter-spacing: 1.5px;
+
+
+   cursor: pointer;
+
+
+   transition: 0.2s ease;
+}
+
+
+button:hover {
+   transform: translateY(-2px);
+}
+
+
+
+
+/* =========================
+  RESULTS
+========================= */
+
+
+.result {
+   position: relative;
+
+
+   padding: 80px 15px 100px;
+}
+
+
+
+
+/* decorative line */
+
+
+.result::before {
+   content: "01  /  YOUR MATCH";
+
+
+   display: block;
+
+
+   font-size: 9px;
+   letter-spacing: 2px;
+
+
+   margin-bottom: 45px;
+}
+
+
+
+
+/* =========================
+  MOVIE PAPER
+========================= */
+
+
+.movie-result {
+   position: relative;
+
+
+   padding: 35px 45px;
+
+
+   background: #f3ecde;
+
+
+   border: 1px solid #aaa18f;
+
+
+   max-width: 760px;
+
+
+   transform: rotate(1deg);
+
+
+   box-shadow:
+       7px 7px 0 rgba(0,0,0,0.08);
+}
+
+
+.movie-result h2 {
+   font-family: 'Syne', sans-serif;
+
+
+   font-size: clamp(50px, 7vw, 85px);
+   line-height: 0.9;
+
+
+   font-weight: 800;
+   letter-spacing: -4px;
+
+
+   margin: 5px 0 20px;
+}
+
+
+.genre {
+   display: inline-block;
+
+
+   padding: 6px 12px;
+
+
+   border: 1px solid #222;
+   border-radius: 100px;
+
+
+   font-size: 8px;
+   letter-spacing: 1.5px;
+
+
+   text-transform: uppercase;
+}
+
+
+
+
+/* =========================
+  BOOK RECOMMENDATION
+========================= */
+
+
+.book-result {
+   position: relative;
+
+
+   max-width: 700px;
+
+
+   margin: -5px 30px 0 auto;
+
+
+   padding: 45px 50px;
+
+
+   background: #ded5c3;
+
+
+   border: 1px solid #999080;
+
+
+   transform: rotate(-2deg);
+
+
+   box-shadow:
+       9px 9px 0 rgba(0,0,0,0.1);
+}
+
+
+
+
+/* Tape */
+
+
+.book-result::before {
+   content: "";
+
+
+   position: absolute;
+
+
+   top: -17px;
+   left: 45%;
+
+
+   width: 85px;
+   height: 30px;
+
+
+   background: rgba(190,174,139,0.65);
+
+
+   transform: rotate(3deg);
+}
+
+
+.book-result h3 {
+   font-family: 'Syne', sans-serif;
+
+
+   font-size: clamp(38px, 5vw, 65px);
+   line-height: 0.9;
+
+
+   font-weight: 800;
+   letter-spacing: -3px;
+
+
+   margin: 8px 0 15px;
+}
+
+
+.author {
+   font-size: 14px;
+
+
+   margin-bottom: 22px;
+}
+
+
+
+
+/* =========================
+  DECORATIVE "HANDWRITING"
+========================= */
+
+
+.book-result::after {
+   content: "→ worth a read";
+
+
+   position: absolute;
+
+
+   right: -35px;
+   bottom: -40px;
+
+
+   font-family: Georgia, serif;
+   font-style: italic;
+
+
+   font-size: 16px;
+
+
+   transform: rotate(-7deg);
+}
+
+
+
+
+/* =========================
+  FOOTER
+========================= */
+
+
+footer {
+   border-top: 1px solid #292929;
+
+
+   padding: 30px 0 10px;
+
+
+   display: flex;
+   justify-content: space-between;
+
+
+   font-size: 8px;
+   letter-spacing: 2px;
+}
+
+
+footer p {
+   margin: 0;
+}
+
+
+
+
+/* =========================
+  MOBILE
+========================= */
+
+
+@media (max-width: 700px) {
+
+
+   main {
+       margin: 20px 12px;
+
+
+       padding: 45px 25px 35px;
+
+
+       box-shadow:
+           6px 6px 0 #b9b09f;
+   }
+
+
+   main::after {
+       display: none;
+   }
+
+
+   .hero {
+       padding-bottom: 50px;
+   }
+
+
+   .hero h1 {
+       font-size: 64px;
+       letter-spacing: -4px;
+   }
+
+
+   .hero::after {
+       display: none;
+   }
+
+
+   .intro {
+       font-size: 16px;
+   }
+
+
+   .search-section {
+       padding: 20px;
+   }
+
+
+   .search-box {
+       flex-direction: column;
+   }
+
+
+   input {
+       border-right: 1px solid #252525;
+       border-bottom: none;
+   }
+
+
+   button {
+       width: 100%;
+   }
+
+
+   .result {
+       padding: 60px 0;
+   }
+
+
+   .movie-result {
+       padding: 30px 25px;
+   }
+
+
+   .movie-result h2 {
+       font-size: 50px;
+   }
+
+
+   .book-result {
+       margin: 25px 5px 0;
+       padding: 35px 25px;
+   }
+
+
+   .book-result h3 {
+       font-size: 42px;
+   }
+
+
+   footer {
+       flex-direction: column;
+       gap: 12px;
+   }
+}
